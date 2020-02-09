@@ -28,7 +28,8 @@ import {
     MatMenuModule, 
     MatButtonModule, 
     MatSnackBarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatFormFieldModule
 } from '@angular/material';
 import { QuillModule } from 'ngx-quill';
 import { AboutPageComponent } from './user/page/about-page/about-page.component';
@@ -63,7 +64,8 @@ import { ResourcesPageComponent } from './user/page/resources-page/resources-pag
         MatSnackBarModule,
         MatTooltipModule,
         QuillModule,
-        FormsModule
+        FormsModule,
+        MatFormFieldModule
     ],
     providers: [
         MasterScreenerService,
