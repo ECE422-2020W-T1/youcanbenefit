@@ -9,6 +9,7 @@ import { PageService } from './user/page/page.service';
 import { MasterScreenerModule } from './user/master-screener/master-screener.module';
 import { BrowseModule } from './user/browse/browse.module';
 import { HomeComponent } from './user/home/home.component';
+import { HomeService } from './user/home/home.service';
 import { MasterScreenerService } from './user/master-screener/master-screener.service';
 import { BrowseService } from './user/browse/browse.service';
 import { AuthService } from './admin/core/services/auth.service'
@@ -34,6 +35,7 @@ import {
 import { QuillModule } from 'ngx-quill';
 import { AboutPageComponent } from './user/page/about-page/about-page.component';
 import { ResourcesPageComponent } from './user/page/resources-page/resources-page.component';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
     declarations: [
@@ -74,7 +76,9 @@ import { ResourcesPageComponent } from './user/page/resources-page/resources-pag
         AuthGuardService,
         ProgramsServiceService,
         InitialRedirectService,
-        PageService
+        PageService,
+        HomeService,
+        HttpModule,
     ],
     bootstrap: [AppComponent]
 })

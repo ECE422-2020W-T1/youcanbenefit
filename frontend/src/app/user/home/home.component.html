@@ -32,14 +32,13 @@
         <app-ie-sucks *ngIf="isIE"></app-ie-sucks>
     </section>
 
-    <mat-form-field [style.width]="'100%'">
-        <input matInput formControlName="Feedback" placeholder="Feedback"/>
-    </mat-form-field>
+    <!-- <form novalidate id="editable-area" [formGroup]="feedback._form">
+        <mat-form-field [style.width]="'100%'"> -->
+    <input matInput [(ngModel)]="feedback.feedback" placeholder="Feedback"/>
+        <!-- </mat-form-field>
+    </form> -->
+    
 
-    <button mat-raised-button >Send</button>
-
-
-
-
+    <button mat-raised-button (click)="handleSendClick()" >Send</button>
 
 </main>

@@ -35,6 +35,7 @@
         <app-edit-row [icon]="'create'" [tooltip]="'Write more details about the program'">
             <quill-editor matInput id="program-details" formControlName="details" [modules]="quillModules" [placeholder]="quillPlaceholder" [style]="{height: '30vh'}" (onEditorCreated)="editorCreated($event)"></quill-editor>
         </app-edit-row>
+        
 
         <app-edit-row [icon]="'label'" [tooltip]="'Tag the program with a category'">
             <app-tag-edit [tags]="program._form.get('tags')" [allTags]="allTags"></app-tag-edit>
