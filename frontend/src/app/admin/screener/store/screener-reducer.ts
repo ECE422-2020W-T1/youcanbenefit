@@ -16,6 +16,7 @@ export interface State {
     selectedConstantQuestion: ID;
     selectedConditionalQuestion: ID;
     created: number;
+    user: string;
     DATA: string;
 }
 
@@ -26,6 +27,7 @@ export const initialState: State = {
     selectedConstantQuestion: undefined,
     selectedConditionalQuestion: undefined,
     created: 0,
+    user: '',
     DATA: "TEST"
 };
 
@@ -239,6 +241,7 @@ export function reducer(state = initialState, action: ScreenerActions): State {
             return (<any>Object).assign({}, {
                 loading: false,
                 created: screener.created,
+                user: screener.user,
                 error: '',
                 form
             })

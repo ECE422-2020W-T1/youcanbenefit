@@ -72,10 +72,15 @@ export class ScreenerToolbarComponent implements OnInit {
       })
     )
 
+    const user = this.form$.pipe(
+      map(screener => this.auth.getUsername())
+    )
+
     combineLatest(
       screenerQuestions,
       questions,
-      (screenerQuestions, questions) => ({...screenerQuestions, questions})
+      user,
+      (screenerQuestions, questions, user) => ({...screenerQuestions, questions, user})
     ).pipe(take(1))
       .subscribe(screener => {
         return this.http.post(`${environment.api}/protected/screener/`, screener, this.auth.getCredentials())

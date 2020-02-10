@@ -10,6 +10,7 @@ declare const btoa;
 export class AuthService {
     isLoggedIn: boolean =  !environment.production;
     private credentials: string;
+    private username: string;
     // store the URL so we can redirect after logging in
     redirectUrl = 'admin/screener/edit';
 
@@ -28,6 +29,7 @@ export class AuthService {
                     this.isLoggedIn = success;
                     if (this.isLoggedIn) {
                         this.credentials = auth;
+                        this.username = user;
                     }
                 })
             )    
@@ -36,6 +38,7 @@ export class AuthService {
     logout(): void {
         this.isLoggedIn = false;
         this.credentials = '';
+        this.username = '';
     }
 
     getCredentials(): RequestOptions {
@@ -49,5 +52,9 @@ export class AuthService {
             throw (e)
         }
         
+    }
+
+    getUsername() : string {
+        return this.username;
     }
 }

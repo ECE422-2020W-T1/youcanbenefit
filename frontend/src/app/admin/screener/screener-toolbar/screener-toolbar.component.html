@@ -2,7 +2,8 @@
    <mat-card-title> Screener Edit </mat-card-title>
   <div class="flex flex-justify">
     <section>
-      <mat-card-subtitle> latest server update: {{ form.created | date }} </mat-card-subtitle>
+      <mat-card-subtitle> Latest server update: {{ form.created | date }} </mat-card-subtitle>
+      <mat-card-subtitle> Updated by {{ form.user }} </mat-card-subtitle>
     </section>
     
     <section class="flex flex-column flex-justify flex-stretch">
