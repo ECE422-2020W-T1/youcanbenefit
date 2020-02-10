@@ -6,6 +6,8 @@ import { ProgramDto } from "../Program/program.dto";
 import { PercolateService } from "../percolate/percolate.service";
 import { PageService } from "../page/page.service"
 import { PageDto } from '../page/page.dto';
+import { FeedbackService } from "../feedback/feedback.service"
+import { FeedbackDto } from '../feedback/feedback.dto';
 
 @Controller('api')
 export class ApiController {
@@ -13,7 +15,8 @@ export class ApiController {
         private programService: ProgramService,
         private screenerService: ScreenerService,
         private percolateService: PercolateService,
-        private pageService: PageService
+        private pageService: PageService,
+        private feedbackService: FeedbackService,
     ) {}
 
     @Get('screener')
@@ -39,5 +42,10 @@ export class ApiController {
     @Post('notification')
     getProgramsFromForm(@Body() body): Observable<ProgramDto[]> {
         return this.percolateService.precolate(body);
+    }
+
+    @Post('feedback')
+    sendFeedback(@Body() body): Observable<FeedbackDto> {
+        return this.feedbackService.sendFeedback(body);
     }
 }

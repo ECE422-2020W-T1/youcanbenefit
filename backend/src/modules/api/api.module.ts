@@ -4,13 +4,15 @@ import { ApiController } from "./api.controller";
 import { ScreenerModule } from "../screener";
 import { PercolateModule } from "../percolate/percolate.module";
 import { PageModule } from "../page/page.module";
+import { FeedbackModule } from "../feedback/feedback.module";
 
 @Module({
     imports: [
         ProgramModule,
         ScreenerModule,
         PercolateModule,
-        PageModule
+        PageModule,
+        FeedbackModule
     ],
     controllers: [ ApiController ]
 })

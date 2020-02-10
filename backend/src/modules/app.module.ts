@@ -8,6 +8,7 @@ import { DataModule } from './data/data.module';
 import { LogModule } from './log/log.module'
 import { ConfigModule } from './config.module'
 import { QuestionModule } from './question/question.module';
+import { FeedbackModule } from './feedback/feedback.module';
 
 @Module({
   imports: [
@@ -19,7 +20,8 @@ import { QuestionModule } from './question/question.module';
     ApiModule,
     DataModule,
     LogModule,
-    QuestionModule
+    QuestionModule,
+    FeedbackModule
   ],
   controllers: [AppController]
 })

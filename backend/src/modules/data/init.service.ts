@@ -15,8 +15,9 @@ export class InitService {
         const questionsExists = await this.client.indices.exists({ index: 'questions'});
         const programsExists = await this.client.indices.exists({ index: 'programs'});
         const pagesExists = await this.client.indices.exists({index: 'pages'})
+        const feedbackExists = await this.client.indices.exists({index: 'pages'})
 
-        return masterScreenerExists && questionsExists && programsExists && pagesExists ;
+        return masterScreenerExists && questionsExists && programsExists && pagesExists && feedbackExists;
     }
 
 
@@ -25,7 +26,8 @@ export class InitService {
         const questionsExists = await this.client.indices.exists({ index: 'questions'});
         const programsExists = await this.client.indices.exists({ index: 'programs'});
         const pagesExists = await this.client.indices.exists({index: 'pages'})
-        const hasBeenInitialized = masterScreenerExists && questionsExists && programsExists && pagesExists;
+        const feedbackExists = await this.client.indices.exists({index: 'pages'})
+        const hasBeenInitialized = masterScreenerExists && questionsExists && programsExists && pagesExists && feedbackExists;
 
 
         if (hasBeenInitialized && !force) {
@@ -45,6 +47,9 @@ export class InitService {
         }
         if (pagesExists) {
             await this.client.indices.delete({ index: 'pages'});
+        }
+        if (feedbackExists) {
+            await this.client.indices.delete({ index: 'feedback'});
         }
 
         await this.client.indices.create({ index: 'master_screener'});
@@ -75,11 +80,19 @@ export class InitService {
             body: { properties: { ...PAGES_MAPPING } }
         });
 
+        await this.client.indices.create({ index: 'feedback'});
+        const feedbackMapping = await this.client.indices.putMapping({
+            index: 'feedback',
+            type: 'user_facing',
+            body: { properties: { ...FEEDBACK_MAPPING } }
+        });
+
         return [
             [ masterScreenerExists, masterScreenerPutMapping],
             [ questionsExists, questionScreenerMapping ],
             [ programsExists, programsMapping ],
-            [ pagesExists, pagesMapping ]
+            [ pagesExists, pagesMapping ],
+            [ feedbackExists, feedbackMapping ]
         ]
     }
 }
@@ -173,6 +186,21 @@ const PAGES_MAPPING = {
         }
     },
     "title": {
+        "type": "text",
+        "fields": {
+            "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+            }
+        }
+    }
+}
+
+const FEEDBACK_MAPPING = {
+    "created": {
+        "type": "long"
+    },
+    "feedback": {
         "type": "text",
         "fields": {
             "keyword": {
