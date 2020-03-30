@@ -11,36 +11,29 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                cd '. backend/'
-                sh 'npm install'
-                cd '. ../frontend/'
-                sh 'npm install'
-                cd '. ..'
+                dir('./backend'){
+                    sh 'npm install'
+                }
+                dir('./frontend'){
+                    sh 'npm install'
+                }
             }
         }
         stage('Deliver') {
             steps {
-                sh 'cd backend/'
-                sh 'cd scripts/'
-                sh 'deliver.sh'
-                sh 'cd ..'
-                sh 'cd ..'
-                sh 'cd frontend/'
-                sh 'cd scripts/'
-                sh 'deliver.sh'
-                sh 'cd ..'
-                sh 'cd ..'
+                dir('./backend'){
+                    sh '../scripts/deliver.sh'
+                }
+                dir('./frontend'){
+                    sh '../scripts/deliver.sh'
+                }
                 input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                sh 'cd backend/'
-                sh 'cd scripts/'
-                sh 'kill.sh'
-                sh 'cd ..'
-                sh 'cd ..'
-                sh 'cd frontend/'
-                sh 'cd scripts/'
-                sh 'kill.sh'
-                sh 'cd ..'
-                sh 'cd ..'
+                dir('./backend'){
+                    sh '../scripts/kill.sh'
+                }
+                dir('./frontend'){
+                    sh '../scripts/kill.sh'
+                }
             }
         }
     }
