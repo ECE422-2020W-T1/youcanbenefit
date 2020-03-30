@@ -11,12 +11,11 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'cd backend/'
+                cd '. backend/'
                 sh 'npm install'
-                sh 'cd ..'
-                sh 'cd frontend/'
+                cd '. ../frontend/'
                 sh 'npm install'
-                sh 'cd ..'
+                cd '. ..'
             }
         }
         stage('Deliver') {
