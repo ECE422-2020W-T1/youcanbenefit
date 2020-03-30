@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'docker-compose -f docker-compose.yml up --build'
+                step([$class: 'DockerComposeBuilder', dockerComposeFile: 'docker-compose.yml', option: [$class: 'StartService', scale: 1, service: 'youcanbenefit'], useCustomDockerComposeFile: true])
             }
         }
         stage('Deliver') {
