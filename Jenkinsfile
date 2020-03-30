@@ -21,6 +21,7 @@ pipeline {
         }
         stage('Deliver') {
             steps {
+                sh 'chmod 744 -R scripts/'
                 dir('./backend'){
                     sh '../scripts/deliver.sh'
                 }
