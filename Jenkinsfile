@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                step([$class: 'DockerComposeBuilder', dockerComposeFile: 'docker-compose.yml', option: [$class: 'StartService', command: 'build', scale: 1, service: 'youcanbenefit'], useCustomDockerComposeFile: true])
+                step([$class: 'DockerComposeBuilder', dockerComposeFile: 'docker-compose.yml', option: [$class: 'ExecuteCommandInsideContainer', privilegedMode: true, command: 'build'], useCustomDockerComposeFile: true])
             }
         }
         stage('Deliver') {
