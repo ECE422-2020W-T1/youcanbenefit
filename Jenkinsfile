@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'node:13-alpine'
-            args '-p 4200:4200'
+            args '-p 4200:4200 -u root:sudo'
         }
     }
     environment {
@@ -22,17 +22,17 @@ pipeline {
         stage('Deliver') {
             steps {
                 dir('./backend'){
-                    sh 'sudo ../scripts/deliver.sh'
+                    sh '../scripts/deliver.sh'
                 }
                 dir('./frontend'){
-                    sh 'sudo ../scripts/deliver.sh'
+                    sh '../scripts/deliver.sh'
                 }
                 input message: 'Finished using the web site? (Click "Proceed" to continue)'
                 dir('./backend'){
-                    sh 'sudo ../scripts/kill.sh'
+                    sh '../scripts/kill.sh'
                 }
                 dir('./frontend'){
-                    sh 'sudo ../scripts/kill.sh'
+                    sh '../scripts/kill.sh'
                 }
             }
         }
