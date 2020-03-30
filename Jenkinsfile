@@ -13,7 +13,8 @@ pipeline {
             steps {
                 sh 'cd backend/'
                 sh 'npm install'
-                sh 'cd ../frontend/'
+                sh 'cd ..'
+                sh 'cd frontend/'
                 sh 'npm install'
                 sh 'cd ..'
             }
@@ -22,13 +23,15 @@ pipeline {
             steps {
                 sh 'cd backend/'
                 sh './scripts/deliver.sh'
-                sh 'cd ../frontend/'
+                sh 'cd ..'
+                sh 'cd frontend/'
                 sh './scripts/deliver.sh'
                 sh 'cd ..'
                 input message: 'Finished using the web site? (Click "Proceed" to continue)'
                 sh 'cd backend/'
                 sh './jenkins/scripts/kill.sh'
-                sh 'cd ../frontend/'
+                sh 'cd ..'
+                sh 'cd frontend/'
                 sh './jenkins/scripts/kill.sh'
                 sh 'cd ..'
             }
