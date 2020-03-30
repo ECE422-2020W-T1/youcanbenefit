@@ -22,17 +22,17 @@ pipeline {
         stage('Deliver') {
             steps {
                 dir('./backend'){
-                    sh '../scripts/deliver.sh'
+                    sh 'sudo ../scripts/deliver.sh'
                 }
                 dir('./frontend'){
-                    sh '../scripts/deliver.sh'
+                    sh 'sudo ../scripts/deliver.sh'
                 }
                 input message: 'Finished using the web site? (Click "Proceed" to continue)'
                 dir('./backend'){
-                    sh '../scripts/kill.sh'
+                    sh 'sudo ../scripts/kill.sh'
                 }
                 dir('./frontend'){
-                    sh '../scripts/kill.sh'
+                    sh 'sudo ../scripts/kill.sh'
                 }
             }
         }
