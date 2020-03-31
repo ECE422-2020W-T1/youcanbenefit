@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "NODE_ENV=development ng serve",
+    "start": "NODE_ENV=development ng serve --host 0.0.0.0",
     "start-prod": "NODE_ENV=development ng serve  --prod=true --aot=true --optimization=true --verbose=true",
     "test": "ng test",
     "lint": "ng lint",
