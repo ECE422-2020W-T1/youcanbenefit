@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'node:10-alpine'
-            args '-p 3000:4200 -u root:root'
+            args '-p 3000:3000 -u root:root'
         }
     }
     environment {
@@ -12,29 +12,22 @@ pipeline {
         stage('Build') {
             steps {
                 dir('./frontend'){
-                    sh 'npm install'
+                    sh 'ng serve --port 3000'
                     
                 }
             }
         }
         stage('Deliver') {
             steps {
+                sh 'chmod 744 -R scripts/'
                 dir('./frontend'){
-                    sh 'npm start'
+                    sh '../scripts/deliver.sh'
+                }
+                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                dir('./frontend'){
+                    sh '../scripts/kill.sh'
                 }
             }
         }
-        // stage('Deliver') {
-        //     steps {
-        //         sh 'chmod 744 -R scripts/'
-        //         dir('./frontend'){
-        //             sh '../scripts/deliver.sh'
-        //         }
-        //         input message: 'Finished using the web site? (Click "Proceed" to continue)'
-        //         dir('./frontend'){
-        //             sh '../scripts/kill.sh'
-        //         }
-        //     }
-        // }
     }
 }
