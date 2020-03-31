@@ -7,7 +7,7 @@ echo 'is followed by another command that retrieves the process ID (PID) value'
 echo 'of the previously run process (i.e. "npm start") and writes this value to'
 echo 'the file ".pidfile".'
 set -x
-npm run start --verbose
+ng serve --port 3000
 sleep 1
 echo $! > .pidfile
 set +x

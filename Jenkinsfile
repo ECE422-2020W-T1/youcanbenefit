@@ -12,7 +12,7 @@ pipeline {
         stage('Build') {
             steps {
                 dir('./frontend'){
-                    sh 'ng serve --port 3000'
+                    sh 'npm install'
                     
                 }
             }
