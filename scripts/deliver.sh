@@ -7,7 +7,7 @@
 # echo 'of the previously run process (i.e. "npm start") and writes this value to'
 # echo 'the file ".pidfile".'
 # set -x
-ng serve --host 0.0.0.0
+npm run start --verbose
 # sleep 1
 # echo $! > .pidfile
 # set +x
