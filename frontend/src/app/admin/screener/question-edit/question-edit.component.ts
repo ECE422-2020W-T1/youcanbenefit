@@ -36,7 +36,8 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
     readonly CONTROL_TYPE_VALUES = [
         { value: 'NumberInput', display: 'number input' },
         { value: 'Toggle', display: 'toggle' },
-        { value: 'Multiselect', display: 'multiselect'}
+        { value: 'Multiselect', display: 'multiselect'},
+        { value: 'NumberSelect', display: 'single select'}
     ].sort( (a, b) => a.display.trim().localeCompare(b.display.trim()));
 
     selectedQuestionID$;
@@ -88,6 +89,7 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
                 tap( (form: any) => {
                     this.controlType = form.get('controlType').value
                     const val = form.value;
+                    // console.log(val);
 
                     if (val.controlType && val.controlType === 'Multiselect' && val.multiSelectOptions) {
                         this.multiQuestions = [...val.multiSelectOptions];
@@ -129,7 +131,7 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
     addOption() {
         const optionVal = this.optionForm.get('optionValue').value;
         if (Number.parseInt(optionVal, 10).toString().length === optionVal.length) {
-            this.options = [...this.options, Number.parseInt(optionVal, 10)];
+            this.options = [...this.options, optionVal];
         } else {
             this.options = [...this.options, optionVal];
         }

@@ -94,6 +94,7 @@ export class ScreenerToolbarComponent implements OnInit {
   }
 
   getQuestions(questionData) : any[] {
+    // console.log(questionData);
     const questionDataArray = this.toArray(questionData)
     const questionArray = [];
     questionDataArray.forEach(q => {
@@ -101,6 +102,10 @@ export class ScreenerToolbarComponent implements OnInit {
       if (q.controlType === "Multiselect") {
         q.multiSelectOptions.forEach(multiQuestion => {
           questionArray.push({text: multiQuestion.text, id: multiQuestion.id, type: "boolean"})
+        });
+      } else if (q.controlType === "NumberSelect") {
+        q.options.forEach(option => {
+          questionArray.push({text: option.toString(), id: q.id, type: "boolean"})
         });
       } else if (q.controlType === "NumberInput") {
         questionType = "integer";
