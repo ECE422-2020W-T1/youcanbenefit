@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'docker:dind'
+            image 'node:10-alpine'
             args '-p 3000:4200'
         }
     }
@@ -9,10 +9,23 @@ pipeline {
         CI = 'true'
     }
     stages {
-        stage('Deliver') {
+        stage('Build') {
             steps {
-                sh 'docker-compose up'
+                dir('./frontend'){
+                    sh 'npm install'
+                }
             }
         }
+        // stage('Deliver') {
+        //     steps {
+        //         dir('./frontend'){
+        //             sh '../scripts/deliver.sh'
+        //         }
+        //         input message: 'Finished using the web site? (Click "Proceed" to continue)'
+        //         dir('./frontend'){
+        //             sh '../scripts/kill.sh'
+        //         }
+        //     }
+        // }
     }
 }
