@@ -16,6 +16,11 @@ pipeline {
                 }
             }
         }
+
+        node {
+            checkout scm
+            sh "docker ps"
+        }
         // stage('Deliver') {
         //     steps {
         //         dir('./frontend'){
