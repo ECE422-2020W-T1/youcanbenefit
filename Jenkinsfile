@@ -1,25 +1,25 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:10-alpine'
-            args '-p 3000:4200'
-        }
-    }
     environment {
         CI = 'true'
     }
     stages {
         stage('Build') {
+            agent {
+                docker {
+                    image 'node:10-alpine'
+                }
+            }
             steps {
                 dir('./frontend'){
                     sh 'npm install'
                 }
             }
         }
-
-        node {
-            checkout scm
-            sh "docker ps"
+        stage('Build2') {
+            agent none
+            steps {
+                sh 'docker ps'
+            }  
         }
         // stage('Deliver') {
         //     steps {
