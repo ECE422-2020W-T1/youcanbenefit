@@ -14,6 +14,11 @@ pipeline {
                     // }
                     echo '${REGISTRY_NAME}'
                     sh 'docker build --tag ${REGISTRY_NAME}/youcanbenefit-frontend:latest .' 
+                    withCredentials([usernamePassword(credentialsId: '5c6659ff-00c2-4429-a1bb-7e7c4392c35b', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOCKER_USER')]) {
+                        sh 'echo ${DOCKER_USER}'
+                        sh 'docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}'
+                        sh 'docker push ${REGISTRY_NAME}/youcanbenefit-frontend:latest'
+                    }
                 }
                 input message: 'Finished using the web site? (Click "Proceed" to continue)'
             }
