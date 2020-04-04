@@ -8,7 +8,7 @@ pipeline {
             steps {
                 dir('./frontend'){
                     // sh 'npm install'
-                    sh 'docker ps' 
+                    sh 'docker build .' 
                 }
                 input message: 'Finished using the web site? (Click "Proceed" to continue)'
             }
