@@ -11,9 +11,6 @@ pipeline {
                         dir('./backend') {
                             sh 'npm ci'
                         }
-                        dir('./frontend') {
-                            sh 'npm ci'
-                        }
                     }
                 }
                 stage('Test') {
