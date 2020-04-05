@@ -31,7 +31,7 @@ pipeline {
                 sh 'docker build --tag ${REGISTRY_NAME}/youcanbenefit-backend:latest ./backend'
                 sh 'docker build --tag ${REGISTRY_NAME}/youcanbenefit-frontend:latest ./frontend'
 
-                withCredentials([usernamePassword(credentialsId: '5c6659ff-00c2-4429-a1bb-7e7c4392c35b', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOCKER_USER')]) {
+                withCredentials([usernamePassword(credentialsId: '2e3d3c80-43cd-4f01-97b8-c04e55b0b2ff', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOCKER_USER')]) {
                     sh 'docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}'
                     sh 'docker push ${REGISTRY_NAME}/youcanbenefit-backend:latest'
                     sh 'docker push ${REGISTRY_NAME}/youcanbenefit-frontend:latest'
