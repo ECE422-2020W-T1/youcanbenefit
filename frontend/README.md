@@ -8,9 +8,12 @@ There is also an administrator section that allows for privelleged users to modi
 new programs can be uploaded, queries (conditions on user demographics) to determine elligiblilty for said programs and 
 the `Master Screener` or questionaire can be modified. 
 
+
 # relevant affiliations
 
 * [EndPoverty](https://www.endpovertyedmonton.ca/)
 * [E4C](http://e4calberta.org/)
 * [City of Edmonton](https://www.edmonton.ca/)
 * [beta city yeg](https://betacity.ca/)
+
+## This is the pipeline stage

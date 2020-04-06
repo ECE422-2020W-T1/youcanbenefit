@@ -54,6 +54,7 @@ export class ProtectedController {
 
     @Post('/screener/')
     saveScreener(@Body() data) {
+        // console.log(data);
         return Observable.zip(
             this.screenerService.update((<ScreenerDto> data)),
             this.questionService.updateQuestions(data['questions'])
