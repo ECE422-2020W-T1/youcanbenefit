@@ -9,10 +9,11 @@ new programs can be uploaded, queries (conditions on user demographics) to deter
 the `Master Screener` or questionaire can be modified. 
 
 
-
 # relevant affiliations
 
 * [EndPoverty](https://www.endpovertyedmonton.ca/)
 * [E4C](http://e4calberta.org/)
 * [City of Edmonton](https://www.edmonton.ca/)
 * [beta city yeg](https://betacity.ca/)
+
+## This is the pipeline stage
