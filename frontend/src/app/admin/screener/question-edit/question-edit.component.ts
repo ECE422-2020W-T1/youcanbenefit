@@ -36,8 +36,7 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
     readonly CONTROL_TYPE_VALUES = [
         { value: 'NumberInput', display: 'number input' },
         { value: 'Toggle', display: 'toggle' },
-        { value: 'Multiselect', display: 'multiselect'},
-        { value: 'NumberSelect', display: 'single select'}
+        { value: 'Multiselect', display: 'multiselect'}
     ].sort( (a, b) => a.display.trim().localeCompare(b.display.trim()));
 
     selectedQuestionID$;
